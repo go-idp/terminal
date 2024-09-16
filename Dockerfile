@@ -20,18 +20,28 @@ RUN CGO_ENABLED=0 \
   -v -o terminal ./cmd/terminal
 
 # Server
-FROM whatwewant/alpine:v3.17-1
+FROM whatwewant/zmicro:v1.24
 
 LABEL MAINTAINER="Zero<tobewhatwewant@gmail.com>"
 
 LABEL org.opencontainers.image.source="https://github.com/go-idp/terminal"
+
+RUN zmicro update -a
+
+RUN apt install -y openssh-client
+
+RUN zmicro package install docker
+
+RUN zmicro package install docker-compose
+
+RUN zmicro package install kubectl
+
+RUN zmicro package install helm
 
 ARG VERSION=latest
 
 ENV VERSION=${VERSION}
 
 COPY --from=builder /build/terminal /bin
-
-RUN terminal --version
 
 CMD terminal

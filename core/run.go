@@ -71,6 +71,23 @@ ____________________________________O/_______
 		}
 
 		opt.Server = server
+
+		opt.Middlewares = append(opt.Middlewares, func(ctx *zoox.Context) {
+			id := ctx.RequestID()
+
+			initCommand := ctx.Query().Get("init_command")
+			if initCommand != "" {
+				logger.Infof("[%s] init command: %s", id, initCommand)
+			}
+
+			if environments, ok := ctx.Request.URL.Query()["environment"]; ok {
+				for _, env := range environments {
+					logger.Infof("[%s] environment: %s", id, env)
+				}
+			}
+
+			ctx.Next()
+		})
 	})
 
 	app.Get("/web", func(ctx *zoox.Context) {
