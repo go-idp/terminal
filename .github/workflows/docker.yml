@@ -71,8 +71,8 @@ jobs:
             VERSION=${{ steps.meta.outputs.version }}
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          cache-from: type=terminal,ref=${{ steps.meta.outputs.name }}:buildcache
-          cache-to: type=terminal,ref=${{ steps.meta.outputs.name }}:buildcache,mode=max
+          cache-from: type=registry,ref=${{ steps.meta.outputs.name }}:buildcache
+          cache-to: type=registry,ref=${{ steps.meta.outputs.name }}:buildcache,mode=max
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64,linux/arm64
