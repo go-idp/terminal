@@ -28,7 +28,7 @@ LABEL org.opencontainers.image.source="https://github.com/go-idp/terminal"
 
 RUN zmicro update -a
 
-RUN apt install -y openssh-client
+RUN apt install -y openssh-client vim
 
 RUN zmicro package install docker
 
