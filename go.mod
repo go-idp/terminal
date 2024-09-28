@@ -7,7 +7,7 @@ require (
 	github.com/go-zoox/core-utils v1.4.11
 	github.com/go-zoox/datetime v1.3.1
 	github.com/go-zoox/logger v1.5.1
-	github.com/go-zoox/terminal v1.8.6
+	github.com/go-zoox/terminal v1.8.9
 	github.com/go-zoox/zoox v1.15.9
 )
 
